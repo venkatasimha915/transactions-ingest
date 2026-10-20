@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Domain model, import contracts and pure (I/O-free) reconciliation helpers.
+       Deliberately has no EF Core / ASP.NET dependency. -->
+</Project>
