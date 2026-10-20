@@ -1,9 +1,11 @@
-<header class="toolbar">
+<header class="hero">
   <div>
+    <p class="eyebrow">Retail payments platform</p>
     <h1>Transactions</h1>
-    <p class="subtitle">Consolidated card transactions from all source systems</p>
+    <p class="subtitle">Consolidated card transactions from Store Uptown, Store Downtown and Online</p>
   </div>
   <button type="button" class="primary" (click)="runImport()" [disabled]="importing()">
+    <span class="spark" aria-hidden="true">⟳</span>
     {{ importing() ? 'Importing…' : 'Run import' }}
   </button>
 </header>
@@ -12,11 +14,11 @@
   <section class="run" [class.warn]="!run.succeeded" aria-live="polite">
     <strong>Last import</strong>
     <span>{{ run.startedAtUtc | date: 'medium' : 'UTC' }} UTC</span>
-    <span class="chip">+{{ run.inserted }} inserted</span>
-    <span class="chip">{{ run.updated }} updated</span>
-    <span class="chip">{{ run.revoked }} revoked</span>
-    @if (run.reactivated) { <span class="chip">{{ run.reactivated }} reactivated</span> }
-    <span class="chip">{{ run.finalized }} finalized</span>
+    <span class="chip inserted">+{{ run.inserted }} inserted</span>
+    <span class="chip updated">{{ run.updated }} updated</span>
+    <span class="chip revoked">{{ run.revoked }} revoked</span>
+    @if (run.reactivated) { <span class="chip reactivated">{{ run.reactivated }} reactivated</span> }
+    <span class="chip finalized">{{ run.finalized }} finalized</span>
     <span class="chip muted">{{ run.unchanged }} unchanged</span>
     @if (run.rejected) { <span class="chip warn">{{ run.rejected }} rejected</span> }
     @if (run.failedSources.length) {
@@ -70,11 +72,11 @@
         @for (t of rows(); track t.id) {
           <tr (click)="openDetails(t.id)" [class.selected]="selectedId() === t.id"
               tabindex="0" (keydown.enter)="openDetails(t.id)">
-            <td>{{ t.sourceSystem }}</td>
+            <td><span [class]="'source ' + sourceTone(t.sourceSystem)">{{ t.sourceSystem }}</span></td>
             <td class="num mono">{{ t.transactionId }}</td>
             <td>{{ t.locationCode }}</td>
             <td>{{ t.productName }}</td>
-            <td class="num mono">{{ t.amount | currency: 'USD' }}</td>
+            <td class="num mono amount">{{ t.amount | currency: 'USD' }}</td>
             <td class="mono">{{ t.transactionTime | date: 'yyyy-MM-dd HH:mm:ss' : 'UTC' }}</td>
             <td><span class="badge" [class]="'badge ' + t.status.toLowerCase()">{{ t.status }}</span></td>
           </tr>
@@ -92,7 +94,7 @@
   @if (selected(); as d) {
     <aside class="panel" aria-label="Transaction details">
       <div class="panel-head">
-        <h2>{{ d.transaction.sourceSystem }} · #{{ d.transaction.transactionId }}</h2>
+        <h2><span [class]="'source ' + sourceTone(d.transaction.sourceSystem)">{{ d.transaction.sourceSystem }}</span> #{{ d.transaction.transactionId }}</h2>
         <button type="button" class="ghost" (click)="closeDetails()" aria-label="Close details">✕</button>
       </div>
       <dl>

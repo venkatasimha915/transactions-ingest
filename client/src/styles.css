@@ -1,16 +1,28 @@
 :root {
   color-scheme: light dark;
-  --bg: #f6f7f9; --surface: #fff; --head: #fafbfc; --text: #1b1f24; --muted: #5d6570; --border: #e2e5ea;
-  --accent: #2f5bd3; --hover: #f2f5fb; --selected: #e8eefc; --chip: #eef0f3;
-  --ok: #2e8b57; --ok-bg: #e3f4ea; --ok-text: #1f6b42;
-  --err-bg: #fbe7e7; --err-text: #a12626;
-  --warn: #c98a12; --warn-bg: #fdf1dc; --warn-text: #865a06;
+  --bg: #f4f2fb; --surface: #ffffff; --head: #f7f5ff; --text: #1d1b2e; --muted: #6a6585; --border: #e6e2f3;
+  --accent: #6d4aff; --accent-2: #e0408a; --hover: #f6f2ff; --selected: #ece5ff; --chip: #efecf8;
+  --ok: #16a36a; --ok-bg: #dcf7ea; --ok-text: #0d7a4e;
+  --err-bg: #ffe3e8; --err-text: #c0244a;
+  --warn: #e69a12; --warn-bg: #fff1d6; --warn-text: #93600a;
+  --info-bg: #e2ecff; --info-text: #2453c9;
+  --purple-bg: #f0e4ff; --purple-text: #7a2fd1;
+  --uptown-bg: #d9f6f3; --uptown-text: #0b7c72;
+  --downtown-bg: #ffe9d6; --downtown-text: #b4540a;
+  --online-bg: #ece3ff; --online-text: #6235d6;
+  --hero: linear-gradient(120deg, #4f46e5 0%, #8b3cf0 45%, #e0408a 100%);
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #111418; --surface: #181c21; --head: #1d2228; --text: #e6e9ed; --muted: #9aa3ad; --border: #2a3038;
-    --accent: #6b8cff; --hover: #1f252c; --selected: #222c40; --chip: #252b33;
-    --ok-bg: #173325; --ok-text: #7fd6a3; --err-bg: #3a1d1f; --err-text: #f29b9b; --warn-bg: #3a2e14; --warn-text: #f0c46a;
+    --bg: #12101c; --surface: #1b1828; --head: #221e33; --text: #ecebf5; --muted: #a29dbc; --border: #2e2a42;
+    --accent: #9b84ff; --hover: #241f36; --selected: #2e2650; --chip: #2a2640;
+    --ok-bg: #12382a; --ok-text: #6fe0aa; --err-bg: #40182a; --err-text: #ff8fae;
+    --warn-bg: #3d2d10; --warn-text: #ffc865; --info-bg: #1b2a52; --info-text: #8fb1ff;
+    --purple-bg: #321f52; --purple-text: #c9a3ff;
+    --uptown-bg: #0f3532; --uptown-text: #6ee0d3;
+    --downtown-bg: #3d2614; --downtown-text: #ffb170;
+    --online-bg: #2c2152; --online-text: #b9a2ff;
+    --hero: linear-gradient(120deg, #3b33b8 0%, #6c2bc4 45%, #b02e6c 100%);
   }
 }
 * { box-sizing: border-box; }

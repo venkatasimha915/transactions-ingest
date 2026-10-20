@@ -129,6 +129,15 @@ export class TransactionsPage implements OnInit {
     this.selected.set(null);
   }
 
+  /** Colour family for a source system pill. */
+  sourceTone(name: string): string {
+    const n = name.toLowerCase();
+    if (n.includes('uptown')) return 'uptown';
+    if (n.includes('downtown')) return 'downtown';
+    if (n.includes('online')) return 'online';
+    return 'other';
+  }
+
   ariaSort(column: SortColumn): 'ascending' | 'descending' | 'none' {
     const q = this.query();
     return q.sort !== column ? 'none' : q.direction === 'asc' ? 'ascending' : 'descending';
