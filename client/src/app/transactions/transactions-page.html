@@ -1,0 +1,144 @@
+<header class="toolbar">
+  <div>
+    <h1>Transactions</h1>
+    <p class="subtitle">Consolidated card transactions from all source systems</p>
+  </div>
+  <button type="button" class="primary" (click)="runImport()" [disabled]="importing()">
+    {{ importing() ? 'Importing…' : 'Run import' }}
+  </button>
+</header>
+
+@if (lastRun(); as run) {
+  <section class="run" [class.warn]="!run.succeeded" aria-live="polite">
+    <strong>Last import</strong>
+    <span>{{ run.startedAtUtc | date: 'medium' : 'UTC' }} UTC</span>
+    <span class="chip">+{{ run.inserted }} inserted</span>
+    <span class="chip">{{ run.updated }} updated</span>
+    <span class="chip">{{ run.revoked }} revoked</span>
+    @if (run.reactivated) { <span class="chip">{{ run.reactivated }} reactivated</span> }
+    <span class="chip">{{ run.finalized }} finalized</span>
+    <span class="chip muted">{{ run.unchanged }} unchanged</span>
+    @if (run.rejected) { <span class="chip warn">{{ run.rejected }} rejected</span> }
+    @if (run.failedSources.length) {
+      <span class="chip warn">Failed: {{ run.failedSources.join(', ') }} (skipped, nothing revoked)</span>
+    }
+  </section>
+}
+
+<section class="filters">
+  <label>
+    Source
+    <select [value]="query().source" (change)="setFilter({ source: $any($event.target).value })">
+      <option value="">All sources</option>
+      @for (s of sources(); track s) { <option [value]="s">{{ s }}</option> }
+    </select>
+  </label>
+  <label>
+    Status
+    <select [value]="query().status" (change)="setFilter({ status: $any($event.target).value })">
+      <option value="">All statuses</option>
+      @for (s of statuses; track s) { <option [value]="s">{{ s }}</option> }
+    </select>
+  </label>
+  <label class="grow">
+    Search
+    <input type="search" placeholder="Transaction ID, product or location"
+           (input)="onSearch($any($event.target).value)" />
+  </label>
+</section>
+
+@if (error(); as message) {
+  <div class="error" role="alert">{{ message }}</div>
+}
+
+<div class="layout" [class.with-panel]="selected()">
+  <div class="table-wrap" [class.loading]="loading()">
+    <table>
+      <thead>
+        <tr>
+          @for (c of columns; track c.key) {
+            <th [class.num]="c.numeric" [attr.aria-sort]="ariaSort(c.key)">
+              <button type="button" class="sort" (click)="sortBy(c.key)">
+                {{ c.label }}
+                <span class="arrow">{{ query().sort === c.key ? (query().direction === 'asc' ? '▲' : '▼') : '' }}</span>
+              </button>
+            </th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (t of rows(); track t.id) {
+          <tr (click)="openDetails(t.id)" [class.selected]="selectedId() === t.id"
+              tabindex="0" (keydown.enter)="openDetails(t.id)">
+            <td>{{ t.sourceSystem }}</td>
+            <td class="num mono">{{ t.transactionId }}</td>
+            <td>{{ t.locationCode }}</td>
+            <td>{{ t.productName }}</td>
+            <td class="num mono">{{ t.amount | currency: 'USD' }}</td>
+            <td class="mono">{{ t.transactionTime | date: 'yyyy-MM-dd HH:mm:ss' : 'UTC' }}</td>
+            <td><span class="badge" [class]="'badge ' + t.status.toLowerCase()">{{ t.status }}</span></td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="7" class="empty">
+              @if (loading()) { Loading… } @else { No transactions yet. Click <b>Run import</b> to pull the source snapshots. }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  @if (selected(); as d) {
+    <aside class="panel" aria-label="Transaction details">
+      <div class="panel-head">
+        <h2>{{ d.transaction.sourceSystem }} · #{{ d.transaction.transactionId }}</h2>
+        <button type="button" class="ghost" (click)="closeDetails()" aria-label="Close details">✕</button>
+      </div>
+      <dl>
+        <dt>Status</dt><dd><span [class]="'badge ' + d.transaction.status.toLowerCase()">{{ d.transaction.status }}</span></dd>
+        <dt>Card</dt><dd class="mono">{{ d.transaction.cardNumber || '— (non-card payment)' }}</dd>
+        <dt>Location</dt><dd>{{ d.transaction.locationCode }}</dd>
+        <dt>Product</dt><dd>{{ d.transaction.productName }}</dd>
+        <dt>Amount</dt><dd class="mono">{{ d.transaction.amount | currency: 'USD' }}</dd>
+        <dt>Time (UTC)</dt><dd class="mono">{{ d.transaction.transactionTime | date: 'yyyy-MM-dd HH:mm:ss' : 'UTC' }}</dd>
+        <dt>Revision</dt><dd>{{ d.transaction.revision }}</dd>
+      </dl>
+      <h3>Audit history</h3>
+      <ol class="audit">
+        @for (a of d.auditHistory; track a.id) {
+          <li>
+            <div class="audit-head">
+              <span [class]="'action ' + a.action.toLowerCase()">{{ a.action }}</span>
+              <time class="mono">{{ a.changedAtUtc | date: 'MM-dd HH:mm:ss' : 'UTC' }}</time>
+            </div>
+            @if (a.fieldName) {
+              <div class="change">
+                <b>{{ a.fieldName }}</b>:
+                <span class="old">{{ a.oldValue ?? '∅' }}</span> → <span class="new">{{ a.newValue ?? '∅' }}</span>
+              </div>
+            }
+          </li>
+        }
+      </ol>
+    </aside>
+  }
+</div>
+
+<footer class="pager">
+  <span>{{ rangeLabel() }}</span>
+  <div>
+    <button type="button" (click)="goTo(query().page - 1)" [disabled]="query().page <= 1">‹ Prev</button>
+    <span>Page {{ query().page }} of {{ totalPages() || 1 }}</span>
+    <button type="button" (click)="goTo(query().page + 1)" [disabled]="query().page >= totalPages()">Next ›</button>
+  </div>
+  <label>
+    Rows
+    <select [value]="query().pageSize" (change)="setFilter({ pageSize: +$any($event.target).value })">
+      <option [value]="10">10</option>
+      <option [value]="25">25</option>
+      <option [value]="50">50</option>
+      <option [value]="100">100</option>
+    </select>
+  </label>
+</footer>
