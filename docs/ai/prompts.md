@@ -16,3 +16,7 @@
    → The assistant generated this repository, compiled it, ran the tests and the app, and fixed the issues listed in `modifications.md`.
 
 <!-- Add any further prompts you use (e.g. follow-up fixes) below, verbatim. -->
+
+3. > Can we make the frontend a bit more colorful?
+
+   -> The assistant added a gradient header, per-source colour pills, coloured import-summary chips and status badges (light + dark mode).

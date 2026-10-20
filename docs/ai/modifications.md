@@ -16,3 +16,4 @@
 - Verified the app on my machine (OS, .NET version, Node version).
 If you changed nothing, say "Reviewed and ran locally; no code changes." -->
 - Reviewed the generated code and ran it locally on Windows (.NET SDK 10.0.402, Node v24.22.0): all 27 backend tests passed; verified import, idempotent re-import and the audit panel in the browser. No code changes after review.
+- Asked the AI for a more colourful UI after the first version; applied its updated styles and verified them locally in the browser.
