@@ -1,0 +1,15 @@
+@api = http://localhost:5080
+
+POST {{api}}/api/import
+
+###
+GET {{api}}/api/transactions?page=1&pageSize=25&sort=transactionTime&direction=desc
+
+###
+GET {{api}}/api/transactions?source=Online&status=Revoked
+
+###
+GET {{api}}/api/transactions/1
+
+###
+GET {{api}}/api/imports

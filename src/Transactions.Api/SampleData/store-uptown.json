@@ -1,0 +1,65 @@
+[
+  {
+    "sourceSystem": "Store Uptown",
+    "transactionId": 100001,
+    "cardNumber": "***1111",
+    "locationCode": "UPTOWN",
+    "productName": "Wireless Mouse",
+    "amount": 24.99,
+    "transactionTime": "2026-02-27T08:15:30Z"
+  },
+  {
+    "sourceSystem": "Store Uptown",
+    "transactionId": 100002,
+    "cardNumber": "***2345",
+    "locationCode": "UPTOWN",
+    "productName": "HDMI Cable 2m",
+    "amount": 12.5,
+    "ageMinutes": 45
+  },
+  {
+    "sourceSystem": "Store Uptown",
+    "transactionId": 100003,
+    "cardNumber": "***7788",
+    "locationCode": "UPTOWN",
+    "productName": "Laptop Stand",
+    "amount": 39.0,
+    "ageMinutes": 130
+  },
+  {
+    "sourceSystem": "Store Uptown",
+    "transactionId": 100004,
+    "cardNumber": "",
+    "locationCode": "UPTOWN",
+    "productName": "Gift Card",
+    "amount": 50.0,
+    "ageMinutes": 300
+  },
+  {
+    "sourceSystem": "Store Uptown",
+    "transactionId": 100005,
+    "cardNumber": "***9012",
+    "locationCode": "UPTOWN",
+    "productName": "Webcam 1080p",
+    "amount": 59.99,
+    "ageMinutes": 720
+  },
+  {
+    "sourceSystem": "Store Uptown",
+    "transactionId": 100006,
+    "cardNumber": "***3456",
+    "locationCode": "UPTOWN",
+    "productName": "Noise Cancel Headset",
+    "amount": 149.0,
+    "ageMinutes": 1200
+  },
+  {
+    "sourceSystem": "Store Uptown",
+    "transactionId": 100007,
+    "cardNumber": "***1111",
+    "locationCode": "UPTOWN",
+    "productName": "Mouse Pad XL",
+    "amount": 14.99,
+    "ageMinutes": 1380
+  }
+]

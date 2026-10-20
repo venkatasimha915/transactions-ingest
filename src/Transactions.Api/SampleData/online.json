@@ -1,0 +1,65 @@
+[
+  {
+    "sourceSystem": "Online",
+    "transactionId": 100001,
+    "cardNumber": "***4444",
+    "locationCode": "ONLINE",
+    "productName": "USB-C Docking Station",
+    "amount": 129.95,
+    "transactionTime": "2026-02-27T11:20:05Z"
+  },
+  {
+    "sourceSystem": "Online",
+    "transactionId": 100002,
+    "cardNumber": "***4444",
+    "locationCode": "ONLINE",
+    "productName": "USB-C Docking Station",
+    "amount": 129.95,
+    "ageMinutes": 60
+  },
+  {
+    "sourceSystem": "Online",
+    "transactionId": 100003,
+    "cardNumber": "***5150",
+    "locationCode": "ONLINE",
+    "productName": "Ergonomic Chair",
+    "amount": 319.0,
+    "ageMinutes": 180
+  },
+  {
+    "sourceSystem": "Online",
+    "transactionId": 100004,
+    "cardNumber": "",
+    "locationCode": "ONLINE",
+    "productName": "Store Credit Top-up",
+    "amount": 25.0,
+    "ageMinutes": 240
+  },
+  {
+    "sourceSystem": "Online",
+    "transactionId": 100005,
+    "cardNumber": "***7201",
+    "locationCode": "ONLINE",
+    "productName": "Wi-Fi 6 Router",
+    "amount": 119.99,
+    "ageMinutes": 600
+  },
+  {
+    "sourceSystem": "Online",
+    "transactionId": 100006,
+    "cardNumber": "***9903",
+    "locationCode": "ONLINE",
+    "productName": "Desk Lamp LED",
+    "amount": 29.9,
+    "ageMinutes": 990
+  },
+  {
+    "sourceSystem": "Online",
+    "transactionId": 100007,
+    "cardNumber": "***1288",
+    "locationCode": "ONLINE",
+    "productName": "Bluetooth Speaker",
+    "amount": 45.0,
+    "ageMinutes": 1425
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "sourceSystem": "Store Downtown",
+    "transactionId": 100001,
+    "cardNumber": "***0002",
+    "locationCode": "DOWNTOWN",
+    "productName": "Mechanical Keyboard",
+    "amount": 89.99,
+    "transactionTime": "2026-02-27T09:45:12Z"
+  },
+  {
+    "sourceSystem": "Store Downtown",
+    "transactionId": 100002,
+    "cardNumber": "***4521",
+    "locationCode": "DOWNTOWN",
+    "productName": "27in Monitor",
+    "amount": 229.0,
+    "ageMinutes": 20
+  },
+  {
+    "sourceSystem": "Store Downtown",
+    "transactionId": 100003,
+    "cardNumber": "***0002",
+    "locationCode": "DOWNTOWN",
+    "productName": "Keycap Set",
+    "amount": 34.95,
+    "ageMinutes": 95
+  },
+  {
+    "sourceSystem": "Store Downtown",
+    "transactionId": 100004,
+    "cardNumber": "***8810",
+    "locationCode": "DOWNTOWN",
+    "productName": "USB Hub 7-Port",
+    "amount": 27.49,
+    "ageMinutes": 410
+  },
+  {
+    "sourceSystem": "Store Downtown",
+    "transactionId": 100005,
+    "cardNumber": "",
+    "locationCode": "DOWNTOWN",
+    "productName": "Extended Warranty",
+    "amount": 19.99,
+    "ageMinutes": 860
+  },
+  {
+    "sourceSystem": "Store Downtown",
+    "transactionId": 100006,
+    "cardNumber": "***6630",
+    "locationCode": "DOWNTOWN",
+    "productName": "Portable SSD 1TB",
+    "amount": 99.0,
+    "ageMinutes": 1310
+  }
+]
